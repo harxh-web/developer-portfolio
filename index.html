@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harsh's Developer World | Interactive 3D Playground Portfolio</title>
+  <meta name="description" content="Explore Harshvardhansingh Thakur's 3D Playground Portfolio — Second-year Computer Science Engineering student passionate about AI/ML, Agentic Coding, and Emerging AI Technologies." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Real-time 3D Playground Canvas -->
+  <canvas id="canvas3d"></canvas>
+
+  <!-- Celebration Confetti Layer -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Interactive UI Overlay -->
+  <div id="uiLayer">
+    
+    <!-- Top Bar Navigation & Controls -->
+    <header class="top-bar interactive">
+      <div class="brand-badge">
+        <div class="brand-dot"></div>
+        <span>Harshvardhansingh Thakur</span>
+        <span style="color:#5D8070; font-weight:600; font-size:0.85rem;">| 2nd-Yr CSE • AI/ML</span>
+      </div>
+
+      <div class="top-controls">
+        <button id="timeToggleBtn" class="btn-play btn-glass">☀️ Day</button>
+        <button id="muteBtn" class="btn-play btn-glass">🔊 Sound: On</button>
+        <button id="viewPortfolioBtn" class="btn-play btn-green" style="display:none;">
+          <span>🚀 Enter Portfolio</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Central 3D Wooden Signboard -->
+    <div class="signboard-container">
+      <div class="signboard-wood">
+        <div class="signboard-ropes">
+          <div class="rope"></div>
+          <div class="rope"></div>
+        </div>
+        <h1 class="signboard-title">WELCOME TO HARSH'S WORLD</h1>
+        <p class="signboard-sub">A little game before you enter my developer universe.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Playground Coin Game Hub -->
+    <main class="bottom-game-card interactive">
+      <div class="mission-text">
+        Your mission: Flip a coin and land <strong>3 heads in a row</strong> to unlock Harsh's developer profile.
+      </div>
+
+      <!-- Streak Progress Tokens -->
+      <div class="streak-bar-container">
+        <div id="streakCountLabel" class="streak-label">HEADS IN A ROW: 0 / 3</div>
+        <div class="streak-tokens">
+          <div id="token1" class="streak-token">1</div>
+          <div id="token2" class="streak-token">2</div>
+          <div id="token3" class="streak-token">3</div>
+        </div>
+      </div>
+
+      <!-- Dynamic Feedback Celebratory Banner -->
+      <div id="feedbackBanner" class="feedback-banner feedback-default">
+        Click "TOSS THE COIN" below to start your streak!
+      </div>
+
+      <!-- Game Actions -->
+      <div class="game-actions">
+        <button id="tossBtn" class="btn-play btn-gold toss-btn-large">
+          <span>🪙 TOSS THE COIN</span>
+        </button>
+
+        <div class="sub-actions">
+          <button id="resetBtn" class="btn-play btn-wood" style="padding:6px 14px; font-size:0.8rem;">
+            🔄 Reset Streak
+          </button>
+          <button id="skipBtn" class="btn-play btn-glass" style="padding:6px 14px; font-size:0.8rem; border-color:#66C94D; color:#17602A;">
+            ⚡ Recruiter Fast-Pass
+          </button>
+        </div>
+
+        <!-- Recent Flips History -->
+        <div style="font-size:0.75rem; font-weight:700; color:#5D8070; margin-top:2px;">
+          RECENT FLIPS:
+          <div id="historyContainer" class="history-row"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Drag / Interact Camera Hint -->
+    <div class="drag-hint">
+      <span>🖱️ Drag to rotate 3D camera • Click trees or 3D coin to interact</span>
+    </div>
+
+  </div>
+
+  <!-- Unlocked Full Developer Profile Modal / Universe -->
+  <div id="portfolioModal" class="interactive">
+    <div class="portfolio-sheet">
+      
+      <!-- Portfolio Header -->
+      <div class="portfolio-header">
+        <div class="header-top">
+          <span class="status-pill">🎉 Developer Universe Unlocked</span>
+          <button id="closePortfolioBtn" class="btn-play btn-glass" style="color:#FFFFFF; border-color:rgba(255,255,255,0.4); background:rgba(0,0,0,0.25);">
+            🌿 Return to 3D Playground
+          </button>
+        </div>
+
+        <div class="hero-profile-row">
+          <div class="avatar-disc">HT</div>
+          <div class="hero-meta">
+            <h1>Harshvardhansingh Thakur</h1>
+            <div class="hero-subtitle">2nd-Year Computer Science & Engineering Student | AI/ML & Agentic Systems Enthusiast</div>
+            <p class="hero-tagline">
+              Obsessed with autonomous multi-agent coding frameworks, real-time 3D WebGL neural rendering, and building intuitive AI tools that turn complex algorithms into delightful user experiences.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Tabs -->
+      <nav class="portfolio-tabs">
+        <button class="tab-btn active" data-tab="tabProjects">Featured Projects</button>
+        <button class="tab-btn" data-tab="tabSkills">Skills & Tech Stack</button>
+        <button class="tab-btn" data-tab="tabAiAgent">Chat with Harsh's AI Agent</button>
+        <button class="tab-btn" data-tab="tabEducation">Education & Milestones</button>
+        <button class="tab-btn" data-tab="tabContact">Connect & Contact</button>
+      </nav>
+
+      <!-- TAB 1: PROJECTS -->
+      <div id="tabProjects" class="tab-content active">
+        <div class="section-title">
+          <span>🚀</span> Featured Projects & Technical Systems
+        </div>
+        <p class="section-desc">
+          Rigorous implementations spanning autonomous LLM multi-agent runtimes, real-time neural field visualization, and deep learning diagnostic architectures.
+        </p>
+
+        <!-- Project Filter Chips -->
+        <div class="projects-filter">
+          <button class="filter-chip active" data-cat="All">All Projects</button>
+          <button class="filter-chip" data-cat="AI/Agents">AI & Agentic Frameworks</button>
+          <button class="filter-chip" data-cat="3D & WebGL">3D & WebGL Graphics</button>
+          <button class="filter-chip" data-cat="Systems & ML">Systems & Neural Nets</button>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div id="projectsGrid" class="projects-grid"></div>
+      </div>
+
+      <!-- TAB 2: SKILLS & TECH STACK -->
+      <div id="tabSkills" class="tab-content">
+        <div class="section-title">
+          <span>⚡</span> Technical Capabilities & Stack
+        </div>
+        <p class="section-desc">
+          Structured proficiencies cultivated through deep engineering projects, algorithmic problem solving, and modern AI development practices.
+        </p>
+        <div id="skillsGrid" class="skills-grid"></div>
+      </div>
+
+      <!-- TAB 3: INTERACTIVE AI AGENT CHAT -->
+      <div id="tabAiAgent" class="tab-content">
+        <div class="section-title">
+          <span>🤖</span> Interactive AI Agent Terminal
+        </div>
+        <p class="section-desc">
+          Ask questions to Harsh's autonomous portfolio agent. See simulated multi-step agent reasoning steps in real time!
+        </p>
+
+        <div class="agent-chat-container">
+          <div class="chat-header">
+            <div class="chat-bot-info">
+              <div class="bot-avatar">⚡</div>
+              <div>
+                <div class="chat-bot-title">Harsh-Bot Agent v2.4</div>
+                <div class="chat-bot-sub">Online • Context-Aware Reasoning Agent</div>
+              </div>
+            </div>
+            <span style="font-size:0.75rem; color:#7FE064; font-weight:700;">● ZERO LATENCY</span>
+          </div>
+
+          <div id="chatMessages" class="chat-messages">
+            <div class="msg-bubble msg-agent">
+              <div class="thinking-block">
+                <span>⚙</span> Initialized AgentForge Context • Loaded Harsh Knowledge Graph
+              </div>
+              <div>
+                Hello! I am Harsh's Autonomous Portfolio Agent. You can ask me anything about Harsh's background, his work on <strong>AgentForge OS</strong> and <strong>NeuroVision 3D</strong>, his 2nd-year CSE coursework, or why he would be an outstanding asset to your engineering team!
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested Quick Prompts -->
+          <div class="chat-prompts">
+            <button class="prompt-chip" data-q="Tell me about Harsh's AI/ML experience">Who is Harsh?</button>
+            <button class="prompt-chip" data-q="What is Harsh's best project?">Key Projects</button>
+            <button class="prompt-chip" data-q="What technologies does Harsh know?">Tech Stack</button>
+            <button class="prompt-chip" data-q="Why should we hire Harsh?">Why Hire Harsh?</button>
+            <button class="prompt-chip" data-q="How was this 3D playground built?">3D Playground Engine</button>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="chat-input-bar">
+            <input id="chatInput" type="text" class="chat-input" placeholder="Ask about Harsh's projects, skills, or experience..." />
+            <button id="chatSendBtn" class="btn-play btn-green" style="padding:10px 20px; font-size:0.9rem;">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: EDUCATION & JOURNEY -->
+      <div id="tabEducation" class="tab-content">
+        <div class="section-title">
+          <span>🎓</span> Academic Foundations & Milestones
+        </div>
+        <p class="section-desc">
+          Rigorous academic journey focusing on algorithmic rigor, systems engineering, and state-of-the-art neural architectures.
+        </p>
+        <div id="educationContainer"></div>
+      </div>
+
+      <!-- TAB 5: CONTACT & CONNECT -->
+      <div id="tabContact" class="tab-content">
+        <div class="section-title">
+          <span>📬</span> Get In Touch With Harsh
+        </div>
+        <p class="section-desc">
+          Interested in discussing an internship, research collaboration, AI project, or agentic coding architecture? Let's connect!
+        </p>
+
+        <div class="contact-layout">
+          <div class="contact-info-card">
+            <h3 style="font-family:'Outfit',sans-serif; font-size:1.25rem; font-weight:800; color:#17352A;">Direct Channels</h3>
+            
+            <div style="background:#F4FAF6; padding:16px; border-radius:14px; border:1px solid #D6E8DF; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:0.75rem; font-weight:800; color:#5D8070; text-transform:uppercase;">Email Address</div>
+                <div id="emailText" style="font-family:'Fira Code',monospace; font-weight:700; color:#17352A; margin-top:2px;">harshvardhan.dev@gmail.com</div>
+              </div>
+              <button id="copyEmailBtn" class="btn-play btn-glass" style="font-size:0.75rem; padding:6px 12px;">Copy Email</button>
+            </div>
+
+            <a href="https://github.com/harshvardhan-thakur" target="_blank" class="contact-link-row">
+              <span>🐙 GitHub Profile</span>
+              <span style="color:#5D8070;">github.com/harshvardhan-thakur ↗</span>
+            </a>
+
+            <a href="https://linkedin.com/in/harshvardhan-thakur" target="_blank" class="contact-link-row">
+              <span>💼 LinkedIn Profile</span>
+              <span style="color:#5D8070;">linkedin.com/in/harshvardhan-thakur ↗</span>
+            </a>
+
+            <a href="https://leetcode.com/harsh_thakur" target="_blank" class="contact-link-row">
+              <span>💻 LeetCode Profile</span>
+              <span style="color:#5D8070;">leetcode.com/harsh_thakur ↗</span>
+            </a>
+
+            <a href="https://twitter.com/harsh_codes_ai" target="_blank" class="contact-link-row">
+              <span>🐦 X / Twitter</span>
+              <span style="color:#5D8070;">@harsh_codes_ai ↗</span>
+            </a>
+          </div>
+
+          <form id="contactForm" class="contact-form">
+            <h3 style="font-family:'Outfit',sans-serif; font-size:1.25rem; font-weight:800; color:#17352A;">Send a Direct Message</h3>
+
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input id="contactName" type="text" required placeholder="e.g. Alex Smith" />
+            </div>
+
+            <div class="form-group">
+              <label for="contactEmail">Your Email</label>
+              <input id="contactEmail" type="email" required placeholder="alex@company.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="contactMsg">Message</label>
+              <textarea id="contactMsg" rows="4" required placeholder="Hi Harsh, I'd love to connect regarding an AI engineering role..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-play btn-gold" style="width:100%; margin-top:8px;">
+              <span>✉️ Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Deep Project Detail Modal -->
+  <div id="projectModal">
+    <div id="projectModalContent" class="project-modal-content"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
